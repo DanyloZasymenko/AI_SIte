@@ -7,5 +7,5 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234@localhost:3306/ai_sit
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from ai_site.models import Callback, History, Quotation, Partner, Teacher, Project, Page, News
+from ai_site.models import сallback, history, quotation, partner, teacher, project, page, news
 from ai_site import routes
