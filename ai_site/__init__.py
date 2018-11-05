@@ -8,4 +8,4 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 from ai_site.models import сallback, history, quotation, partner, teacher, project, page, news
-from ai_site import routes
+from ai_site.routes import home_routes, callback_routes

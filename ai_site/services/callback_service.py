@@ -8,3 +8,17 @@ def save(form):
     db.session.add(callback)
     db.session.commit()
     return callback
+
+
+def get_one(id):
+    return Callback.query.filter_by(id == id).first()
+
+
+def get_all():
+    return Callback.query.all()
+
+
+def delete(id):
+    callback = Callback.query.filter_by(id == id).first()
+    callback.delete()
+    db.session.commit()

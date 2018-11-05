@@ -5,12 +5,6 @@ from ai_site.forms.callback_forms import LeaveCallbackForm
 from ai_site.services.callback_service import save
 
 
-@app.route("/")
-@app.route("/home")
-def home():
-    return render_template("home.html", title='Home')
-
-
 @app.route("/leave-callback", methods=['GET', 'POST'])
 def leave_callback():
     form = LeaveCallbackForm()
