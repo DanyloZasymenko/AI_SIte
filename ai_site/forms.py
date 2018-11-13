@@ -20,3 +20,10 @@ class HistoryForm(FlaskForm):
     date = DateField('Date')
     image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Add')
+
+
+class PartnerForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(min=3, max=50)])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Add')

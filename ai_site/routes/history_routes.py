@@ -44,7 +44,7 @@ def history_update(history_id):
     return render_template("new_history.html", title='Update History', form=form, legend='Update')
 
 
-@app.route("/history/delete/<int:history_id>", methods=['POST'])
+@app.route("/history/delete/<int:history_id>")
 def history_delete(history_id):
     history = History.query.get_or_404(history_id)
     db.session.delete(history)

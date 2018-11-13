@@ -15,4 +15,4 @@ from ai_site.models.partner import Partner
 from ai_site.models.project import ProjectPicture, Project
 from ai_site.models.quotation import Quotation
 from ai_site.models.teacher import Teacher
-from ai_site.routes import home_routes, history_routes
+from ai_site.routes import home_routes, history_routes, partner_routes
