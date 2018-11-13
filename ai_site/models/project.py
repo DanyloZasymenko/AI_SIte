@@ -3,10 +3,6 @@ import enum
 from ai_site import db
 
 
-def __init__():
-    return Project, ProjectPicture
-
-
 class Years(enum.Enum):
     FIRST = 1
     SECOND = 2

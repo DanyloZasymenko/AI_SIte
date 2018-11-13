@@ -3,10 +3,6 @@ from datetime import datetime
 from ai_site import db
 
 
-def __init__():
-    return Callback
-
-
 class Callback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False)

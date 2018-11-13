@@ -1,10 +1,6 @@
 from ai_site import db
 
 
-def __init__():
-    return Quotation
-
-
 class Quotation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(50), nullable=False)

@@ -1,10 +1,6 @@
 from ai_site import db
 
 
-def __init__():
-    return Page, PageText
-
-
 class PageText(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
