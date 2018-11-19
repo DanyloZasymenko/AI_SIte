@@ -22,7 +22,7 @@ class News(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     image = db.Column(db.String(20), nullable=False)
     text = db.Column(db.Text, nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('news_category.id'), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('news_category.id'))
     comments = db.relationship('NewsComment', backref='news', lazy=True)
 
     def __repr__(self):
@@ -32,7 +32,11 @@ class News(db.Model):
 class NewsCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
-    news = db.relationship('News', backref='category', lazy=True)
+    news = db.relationship('News', backref='category', lazy=True, cascade='save-update')
 
     def __repr__(self):
         return f"NewsCategory('{self.name}')"
+
+
+def news_category_query():
+    return NewsCategory.query

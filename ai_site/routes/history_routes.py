@@ -16,12 +16,12 @@ def history_save():
         db.session.commit()
         flash('The history has been added!', 'success')
         return redirect(url_for('history_get_all'))
-    return render_template("new_history.html", title='Add History', form=form, legend='Add')
+    return render_template("history/new_history.html", title='Add History', form=form, legend='Add')
 
 
 @app.route("/history/get-all")
 def history_get_all():
-    return render_template("history_all.html", title='History', histories=History.query.all())
+    return render_template("history/history_all.html", title='History', histories=History.query.all())
 
 
 @app.route("/history/update/<int:history_id>", methods=['GET', 'POST'])
@@ -41,7 +41,7 @@ def history_update(history_id):
         form.header.data = history.header
         form.description.data = history.description
         form.date.data = history.date
-    return render_template("new_history.html", title='Update History', form=form, legend='Update')
+    return render_template("history/new_history.html", title='Update History', form=form, legend='Update')
 
 
 @app.route("/history/delete/<int:history_id>")

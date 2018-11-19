@@ -2,3 +2,4 @@ pip install flask
 pip install flask-sqlalchemy
 pip install --only-binary :all: mysqlclient
 pip install phonenumbers
+pip install wtforms-sqlalchemy

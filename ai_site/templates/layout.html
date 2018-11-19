@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='full-slider.css') }}">
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
@@ -13,22 +15,73 @@
     {% endif %}
 </head>
 <body>
-    <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                {% block content %}{% endblock %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">АІ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('home') }}">ГОЛОВНА
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('news') }}">НОВИНИ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">КОЛЕКТИВ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">КАФЕДРА</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            НАУКА
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">ПУБЛІКАЦІЇ У SCOPUS</a>
+            <a class="dropdown-item" href="#">ПУБЛІКАЦІЇ У SCHOLAR</a>
+            <a class="dropdown-item" href="#">Н-ІНДЕКС</a>
             </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">ПРОЕКТИ</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            СТУДЕНТАМ
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">КАРТА КУРСІВ</a>
+            <a class="dropdown-item" href="#">МОЖЛИВОСТІ</a>
+            </div>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            АБІТУРІЄНТАМ
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">ПОРЯДОК ВСТУПУ</a>
+            <a class="dropdown-item" href="#">ДЕНЬ ВІДКРИТИХ ДВЕРЕЙ</a>
+            </div>
+            <li class="nav-item">
+              <a class="nav-link" href="#">КОНТАКТИ</a>
+            </li>
+          </ul>
         </div>
-    </main>
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; АІ 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

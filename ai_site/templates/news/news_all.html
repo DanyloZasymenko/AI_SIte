@@ -1,0 +1,92 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="mb-2 d-flex flex-row justify-content-center">
+        <div class="text-center">
+            <a role="button" class="btn btn-lg btn-info m-1" href="{{ url_for('news_save') }}">
+                Add news
+            </a>
+        </div>
+        <div class="text-center">
+            <a role="button" class="btn btn-lg btn-info m-1" href="{{ url_for('news_category_save') }}">
+                Add news category
+            </a>
+        </div>
+    </div>
+    <div class="d-flex flex-row">
+        {% for one in categories %}
+            <article class="media content-section mr-2">
+                <div class="text-center">
+                    {{ one.name }}
+                    <div>
+                        <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('news_category_update', news_category_id=one.id) }}">
+                            Update
+                        </a>
+                        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                                data-link="{{ url_for('news_category_delete', news_category_id=one.id, delete_with_news=False) }}"
+                                data-children-link="{{ url_for('news_category_delete', news_category_id=one.id, delete_with_news=True) }}"
+                                data-target="#deleteWithChildrenModal"
+                                onclick="deleteWithChildrenModal(event)">Delete</button>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+    {% for one in news %}
+        <article class="media content-section">
+            <img class="article-img" src="{{ url_for('static', filename='news_pics/' + one.image) }}">
+            <div class="media-body">
+                <h2 class="article-title">{{ one.header }}</h2>
+                <p class="article-content">{{ one.date_posted.strftime('%d-%m-%Y') }}</p>
+                <p class="article-content">{{ one.description }}</p>
+                {% if one.category %}
+                    <p class="article-content">{{ one.category.name }}</p>
+                {% else %}
+                    <p class="article-content text-danger">No category</p>
+                {% endif %}
+                <div>
+                    <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('news_update', news_id=one.id) }}">
+                        Update
+                    </a>
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                            data-link="{{ url_for('news_delete', news_id=one.id) }}" data-target="#deleteModal"
+                            onclick="deleteModal(event)">Delete</button>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete News?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-danger" role="button" href="" id="deleteModalLink">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteWithChildrenModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteWithChildrenModalLabel">Delete with all news?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-danger" role="button" href="" id="deleteChildrenModalLink">Delete with all news</a>
+                    <a class="btn btn-danger" role="button" href="" id="deleteOnlyModalLink">Delete only category</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

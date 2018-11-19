@@ -16,12 +16,12 @@ def partner_save():
         db.session.commit()
         flash('The partner has been added!', 'success')
         return redirect(url_for('partner_get_all'))
-    return render_template("new_partner.html", title='Add Partner', form=form, legend='Add')
+    return render_template("partner/new_partner.html", title='Add Partner', form=form, legend='Add')
 
 
 @app.route("/partner/get-all")
 def partner_get_all():
-    return render_template("partner_all.html", title='Partners', partners=Partner.query.all())
+    return render_template("partner/partner_all.html", title='Partners', partners=Partner.query.all())
 
 
 @app.route("/partner/update/<int:partner_id>", methods=['GET', 'POST'])
@@ -39,7 +39,7 @@ def partner_update(partner_id):
     elif request.method == 'GET':
         form.name.data = partner.name
         form.description.data = partner.description
-    return render_template("new_partner.html", title='Update Partner', form=form, legend='Update')
+    return render_template("partner/new_partner.html", title='Update Partner', form=form, legend='Update')
 
 
 @app.route("/partner/delete/<int:partner_id>")

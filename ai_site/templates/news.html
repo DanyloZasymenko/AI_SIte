@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="card-columns">
+        {% for one in news_list %}
+            <div class="card">
+                <img class="card-img-top" src="{{ url_for('static', filename='news_pics/' + one.image) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ one.header}}</h5>
+                    <p class="card-text">{{ one.description }}</p>
+                    <button type="button" class="btn btn-dark">Детальніше</button>
+                    <p class="card-text"><small class="text-muted">Опубліковано {{ one.date_posted.strftime('%d-%m-%Y') }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
