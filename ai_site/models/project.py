@@ -31,7 +31,7 @@ class Project(db.Model):
     title = db.Column(db.String(70), nullable=False)
     image = db.Column(db.String(20), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    authors = db.Column(db.String(150), nullable=False)
+    authors = db.Column(db.String(180), nullable=False)
     url = db.Column(db.String(70))
     year = db.Column(db.Enum(Years), default=Years.FIRST)
     semester = db.Column(db.Enum(Semesters), default=Semesters.FIRST)

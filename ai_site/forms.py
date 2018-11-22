@@ -1,11 +1,12 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField, MultipleFileField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Length, Email
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from ai_site.models.news import news_category_query
+from ai_site.models.project import Years, Semesters
 
 
 class CallbackForm(FlaskForm):
@@ -44,4 +45,16 @@ class NewsForm(FlaskForm):
 
 class NewsCategoryForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=3, max=30)])
+    submit = SubmitField('Add')
+
+
+class ProjectForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=70)])
+    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    authors = TextAreaField('Authors', validators=[DataRequired(), Length(min=1, max=180)])
+    url = StringField('Url', validators=[DataRequired(), Length(min=1, max=70)])
+    year = SelectField('Year', choices=[(e.name, e.value) for e in Years], validators=[DataRequired()])
+    semester = SelectField('Semester', choices=[(e.name, e.value) for e in Semesters], validators=[DataRequired()])
+    pictures = MultipleFileField('Choose pictures')
     submit = SubmitField('Add')
