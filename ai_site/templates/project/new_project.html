@@ -58,12 +58,13 @@
             </div>
             <div class="form-group">
                 {{ form.image.label() }}
-                {{ form.image(class="form-control-file") }}
+                {{ form.image(class="form-control-file", onchange="filePreview(event)") }}
                 {% if form.image.errors %}
                     {% for error in form.image.errors %}
                         <span class="text-danger">{{ error }}</span><br>
                     {% endfor %}
                 {% endif %}
+                <img src="#" id="preview" class="preview-img" alt="Your image" />
             </div>
             <div class="form-group">
                 {{ form.year.label(class="form-control-label") }}
@@ -93,12 +94,13 @@
             </div>
             <div class="form-group">
                 {{ form.pictures.label() }}
-                {{ form.pictures(class="form-control-file", multiple="multiple") }}
+                {{ form.pictures(class="form-control-file", multiple="multiple", onchange="multipleFilePreview(event)") }}
                 {% if form.pictures.errors %}
                     {% for error in form.pictures.errors %}
                         <span class="text-danger">{{ error }}</span><br>
                     {% endfor %}
                 {% endif %}
+                <div id="multiple-preview"></div>
             </div>
         </fieldset>
         <div class="form-group">
