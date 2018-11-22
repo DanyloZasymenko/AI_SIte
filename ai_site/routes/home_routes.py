@@ -12,7 +12,7 @@ def home():
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html")
+    return
 
 
 @app.route("/news")

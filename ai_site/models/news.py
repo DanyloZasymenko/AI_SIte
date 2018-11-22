@@ -1,4 +1,6 @@
 from datetime import datetime
+from flask_wtf.file import FileField
+from flask_admin.contrib.sqlamodel import ModelView
 
 from ai_site import db
 
@@ -35,8 +37,9 @@ class NewsCategory(db.Model):
     news = db.relationship('News', backref='category', lazy=True, cascade='save-update')
 
     def __repr__(self):
-        return f"NewsCategory('{self.name}')"
+        return f"{self.name}"
 
 
-def news_category_query():
-    return NewsCategory.query
+class NewsView(ModelView):
+    form_excluded_columns = ('date_posted', 'comments')
+    form_overrides = dict(image=FileField)
