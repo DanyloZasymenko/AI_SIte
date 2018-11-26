@@ -35,7 +35,7 @@ class Project(db.Model):
     url = db.Column(db.String(70))
     year = db.Column(db.Enum(Years), default=Years.FIRST)
     semester = db.Column(db.Enum(Semesters), default=Semesters.FIRST)
-    pictures = db.relationship('ProjectPicture', backref='project', lazy=True)
+    pictures = db.relationship('ProjectPicture', backref='project', lazy=True, cascade='all, delete')
 
     def __repr__(self):
         return f"Project('{self.title}', '{self.description}', '{self.authors}', '{self.year}','{self.semester}')"

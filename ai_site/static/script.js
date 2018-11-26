@@ -24,15 +24,22 @@ function filePreview(event) {
 function multipleFilePreview(event) {
     $('#multiple-preview').text('');
     let input = event.target;
+    console.log(input.files);
     if (input.files) {
         let number = input.files.length;
         for (i = 0; i < number; i++) {
             let reader = new FileReader();
             reader.onload = function (e) {
-                $($.parseHTML('<img class="preview-img">')).attr('src', e.target.result)
-                    .appendTo($('#multiple-preview')).show();
+                $($.parseHTML('<img class="list-preview-img">')).attr('src', e.target.result)
+                    .appendTo($('#multiple-preview'));
             };
             reader.readAsDataURL(input.files[i]);
         }
     }
+}
+
+function setBackgroundImage(event){
+    console.log('some');
+    let target =event.target;
+    target.style.backgroundImage = $(target).data('link');
 }

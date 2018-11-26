@@ -94,7 +94,7 @@
             </div>
             <div class="form-group">
                 {{ form.pictures.label() }}
-                {{ form.pictures(class="form-control-file", multiple="multiple", onchange="multipleFilePreview(event)") }}
+                {{ form.pictures(class="form-control-file", id="input-multiple", multiple="multiple", onchange="multipleFilePreview(event)") }}
                 {% if form.pictures.errors %}
                     {% for error in form.pictures.errors %}
                         <span class="text-danger">{{ error }}</span><br>

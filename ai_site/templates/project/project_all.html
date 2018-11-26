@@ -16,20 +16,32 @@
                 <p class="article-content">{{ project.year }}</p>
                 <p class="article-content">{{ project.semester }}</p>
                 <div>
-                    <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('project_update', project_id=project.id) }}">Update</a>
+                    <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('project_update', project_id=project.id) }}">
+                        Update
+                    </a>
                     <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
                             data-link="{{ url_for('project_delete', project_id=project.id) }}" data-target="#deleteModal"
                             onclick="deleteModal(event)">Delete</button>
                 </div>
             </div>
         </article>
+        <div class="d-flex flex-row">
+            {% for picture in project.pictures %}
+                <div class="container-img">
+                    <img class="list-img" src="{{ url_for('static', filename='project_pics/' + picture.image) }}">
+                    <a href="{{ url_for('project_delete_picture', picture_id=picture.id) }}">
+                        <img class="delete-img" src="{{ url_for('static', filename='svg/cancel-button.svg') }}"/>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     {% endfor %}
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete History?</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Project?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
