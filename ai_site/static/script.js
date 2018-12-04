@@ -38,8 +38,17 @@ function multipleFilePreview(event) {
     }
 }
 
-function setBackgroundImage(event){
-    console.log('some');
-    let target =event.target;
-    target.style.backgroundImage = $(target).data('link');
+function sendDelete(event) {
+    console.log('in send');
+    let xhttp = new XMLHttpRequest();
+    let url = $(event.target).data('link');
+    console.log(url);
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("deleted");
+            $(event.target).parent().hide();
+        }
+    };
+    xhttp.open('GET', url, true);
+    xhttp.send();
 }

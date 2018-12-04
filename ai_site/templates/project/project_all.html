@@ -13,8 +13,8 @@
                 <p class="article-content">{{ project.authors }}</p>
                 <p class="article-content">{{ project.url }}</p>
                 <p class="article-content">{{ project.description }}</p>
-                <p class="article-content">{{ project.year }}</p>
-                <p class="article-content">{{ project.semester }}</p>
+                <p class="article-content">Year: {{ project.year.value }}</p>
+                <p class="article-content">Semester: {{ project.semester.value }}</p>
                 <div>
                     <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('project_update', project_id=project.id) }}">
                         Update
@@ -29,9 +29,12 @@
             {% for picture in project.pictures %}
                 <div class="container-img">
                     <img class="list-img" src="{{ url_for('static', filename='project_pics/' + picture.image) }}">
-                    <a href="{{ url_for('project_delete_picture', picture_id=picture.id) }}">
-                        <img class="delete-img" src="{{ url_for('static', filename='svg/cancel-button.svg') }}"/>
-                    </a>
+                    <!--<a href="{{ url_for('project_delete_picture', picture_id=picture.id) }}">-->
+                        <!--<img class="delete-img" src="{{ url_for('static', filename='svg/cancel-button.svg') }}"/>-->
+                    <!--</a>-->
+                    <img class="delete-img" src="{{ url_for('static', filename='svg/cancel-button.svg') }}"
+                         data-link="{{ url_for('project_delete_picture', picture_id=picture.id) }}"
+                         onclick="sendDelete(event)"/>
                 </div>
             {% endfor %}
         </div>

@@ -10,7 +10,8 @@ from ai_site.utils import save_picture
 def project_save():
     form = ProjectForm()
     if form.validate_on_submit():
-        print(form)
+        print(form.year.data)
+        print(form.semester.data)
         project = Project(title=form.title.data, description=form.description.data, authors=form.authors.data,
                           url=form.url.data, image=save_picture(form.image.data, 'project_pics'))
         for picture in form.pictures.data:
