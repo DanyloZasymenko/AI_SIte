@@ -29,9 +29,6 @@
             {% for picture in project.pictures %}
                 <div class="container-img">
                     <img class="list-img" src="{{ url_for('static', filename='project_pics/' + picture.image) }}">
-                    <!--<a href="{{ url_for('project_delete_picture', picture_id=picture.id) }}">-->
-                        <!--<img class="delete-img" src="{{ url_for('static', filename='svg/cancel-button.svg') }}"/>-->
-                    <!--</a>-->
                     <img class="delete-img" src="{{ url_for('static', filename='svg/cancel-button.svg') }}"
                          data-link="{{ url_for('project_delete_picture', picture_id=picture.id) }}"
                          onclick="sendDelete(event)"/>

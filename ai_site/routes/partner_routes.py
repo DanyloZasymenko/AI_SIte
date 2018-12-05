@@ -3,7 +3,7 @@ from flask import render_template, flash, url_for, redirect, request
 from ai_site import app, db
 from ai_site.forms import PartnerForm
 from ai_site.models.partner import Partner
-from ai_site.utils import save_picture
+from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/partner/save", methods=['GET', 'POST'])
@@ -45,6 +45,7 @@ def partner_update(partner_id):
 @app.route("/partner/delete/<int:partner_id>")
 def partner_delete(partner_id):
     partner = Partner.query.get_or_404(partner_id)
+    delete_picture('partner_pics', partner.image)
     db.session.delete(partner)
     db.session.commit()
     flash('The partner has been deleted!', 'danger')

@@ -3,7 +3,7 @@ from flask import render_template, flash, url_for, redirect, request
 from ai_site import app, db
 from ai_site.forms import NewsForm, NewsCategoryForm
 from ai_site.models.news import News, NewsCategory
-from ai_site.utils import save_picture
+from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/news/save", methods=['GET', 'POST'])
@@ -62,6 +62,7 @@ def news_update(news_id):
 @app.route("/news/delete/<int:news_id>")
 def news_delete(news_id):
     news = News.query.get_or_404(news_id)
+    delete_picture('news_pics', news.image)
     db.session.delete(news)
     db.session.commit()
     flash('The news has been deleted!', 'danger')
@@ -73,6 +74,7 @@ def news_category_delete(news_category_id, delete_with_news):
     category = NewsCategory.query.get_or_404(news_category_id)
     if delete_with_news == 'True':
         for news in category.news:
+            delete_picture('news_pics', news.image)
             db.session.delete(news)
     db.session.delete(category)
     db.session.commit()

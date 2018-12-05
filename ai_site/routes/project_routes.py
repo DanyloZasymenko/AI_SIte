@@ -3,15 +3,13 @@ from flask import render_template, flash, url_for, redirect, request
 from ai_site import app, db
 from ai_site.forms import ProjectForm
 from ai_site.models.project import Project, ProjectPicture
-from ai_site.utils import save_picture
+from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/project/save", methods=['GET', 'POST'])
 def project_save():
     form = ProjectForm()
     if form.validate_on_submit():
-        print(form.year.data)
-        print(form.semester.data)
         project = Project(title=form.title.data, description=form.description.data, authors=form.authors.data,
                           url=form.url.data, image=save_picture(form.image.data, 'project_pics'))
         for picture in form.pictures.data:
@@ -57,14 +55,19 @@ def project_update(project_id):
 @app.route("/project/delete/<int:project_id>")
 def project_delete(project_id):
     project = Project.query.get_or_404(project_id)
+    delete_picture('project_pics', project.image)
+    for picture in project.pictures:
+        delete_picture('project_pics', picture.image)
     db.session.delete(project)
     db.session.commit()
+    flash('The project has been deleted!', 'danger')
     return redirect(url_for('project_get_all'))
 
 
 @app.route("/project/delete-picture/<int:picture_id>")
 def project_delete_picture(picture_id):
     picture = ProjectPicture.query.get_or_404(picture_id)
+    delete_picture('project_pics', picture.image)
     db.session.delete(picture)
     db.session.commit()
     return redirect(url_for('project_get_all'))

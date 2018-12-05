@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, TextAreaField, SubmitField, SelectField, MultipleFileField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField, MultipleFileField, IntegerField
 from wtforms.fields.html5 import DateField
-from wtforms.validators import DataRequired, Length, Email
+from wtforms.validators import DataRequired, Length, Email, NumberRange
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from ai_site.models.news import news_category_query
@@ -58,3 +58,16 @@ class ProjectForm(FlaskForm):
     semester = SelectField('Semester', choices=[(e.name, e.value) for e in Semesters], validators=[DataRequired()])
     pictures = MultipleFileField('Choose pictures')
     submit = SubmitField('Add')
+
+
+class PageForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(min=1, max=30)])
+    submit = SubmitField()
+
+
+class PageTextForm(FlaskForm):
+    primary_text = TextAreaField('Primary Text')
+    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    secondary_text = TextAreaField('Secondary Text')
+    position = IntegerField('Position on page', validators=[NumberRange(min=0), DataRequired()])
+    submit = SubmitField('Add element')

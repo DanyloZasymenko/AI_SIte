@@ -1,0 +1,17 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="text-center mb-2">
+        <a role="button" class="btn btn-lg btn-info" href="{{ url_for('page_save') }}">
+            Add new page
+        </a>
+    </div>
+    {% for page in pages %}
+        <article class="media content-section">
+            <div class="media-body">
+                <a href="{{ url_for('page_get_one', page_id=page.id) }}">
+                    <h2 class="article-title">{{ page.name }}</h2>
+                </a>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

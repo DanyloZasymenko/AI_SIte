@@ -1,0 +1,61 @@
+{% extends "admin.html" %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">{{ legend }} Element</legend>
+        <div class="form-group">
+            {{ form.primary_text.label(class="form-control-label") }}
+            {% if form.primary_text.errors %}
+                {{ form.primary_text(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.primary_text.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.primary_text(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.secondary_text.label(class="form-control-label") }}
+            {% if form.secondary_text.errors %}
+                {{ form.secondary_text(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.secondary_text.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.secondary_text(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.position.label(class="form-control-label") }}
+            {% if form.position.errors %}
+                {{ form.position(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.position.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.position(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.image.label() }}
+            {{ form.image(class="form-control-file", onchange="filePreview(event)") }}
+            {% if form.image.errors %}
+                {% for error in form.image.errors %}
+                    <span class="text-danger">{{ error }}</span><br>
+                {% endfor %}
+            {% endif %}
+            <img src="#" id="preview" class="preview-img" alt="Your image" />
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info", value=legend) }}
+    </div>
+</form>
+{% endblock content %}

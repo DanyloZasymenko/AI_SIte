@@ -3,7 +3,7 @@ from flask import render_template, flash, url_for, redirect, request
 from ai_site import app, db
 from ai_site.forms import HistoryForm
 from ai_site.models.history import History
-from ai_site.utils import save_picture
+from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/history/save", methods=['GET', 'POST'])
@@ -47,6 +47,7 @@ def history_update(history_id):
 @app.route("/history/delete/<int:history_id>")
 def history_delete(history_id):
     history = History.query.get_or_404(history_id)
+    delete_picture('history_pics', history.image)
     db.session.delete(history)
     db.session.commit()
     flash('The history has been deleted!', 'danger')
