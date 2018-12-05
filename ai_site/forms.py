@@ -62,7 +62,7 @@ class ProjectForm(FlaskForm):
 
 class PageForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=1, max=30)])
-    submit = SubmitField()
+    submit = SubmitField('Add')
 
 
 class PageTextForm(FlaskForm):
@@ -70,4 +70,17 @@ class PageTextForm(FlaskForm):
     image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
     secondary_text = TextAreaField('Secondary Text')
     position = IntegerField('Position on page', validators=[NumberRange(min=0), DataRequired()])
-    submit = SubmitField('Add element')
+    submit = SubmitField('Add')
+
+
+class TeacherForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(min=1, max=70)])
+    position = StringField('Position', validators=[DataRequired(), Length(min=1, max=50)])
+    link = StringField('Link', validators=[Length(min=1, max=70)])
+    incumbency = StringField('Incumbency', validators=[DataRequired(), Length(min=1, max=50)])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    interests = TextAreaField('Interests')
+    research_directions = TextAreaField('Research directions')
+    hobby = StringField('Hobby', validators=[Length(min=1, max=50)])
+    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Add')

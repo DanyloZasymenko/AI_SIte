@@ -19,7 +19,7 @@ class Semesters(enum.Enum):
 
 class ProjectPicture(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(db.String(20), nullable=False)
+    image = db.Column(db.String(20), nullable=False, default='default.jpg')
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
 
     def __repr__(self):
@@ -29,7 +29,7 @@ class ProjectPicture(db.Model):
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(70), nullable=False)
-    image = db.Column(db.String(20), nullable=False)
+    image = db.Column(db.String(20), nullable=False, default='default.jpg')
     description = db.Column(db.Text, nullable=False)
     authors = db.Column(db.String(180), nullable=False)
     url = db.Column(db.String(70))

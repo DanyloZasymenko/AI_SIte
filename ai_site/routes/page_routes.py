@@ -83,6 +83,7 @@ def page_text_update(page_text_id):
         page_text.secondary_text = form.secondary_text.data
         page_text.position = form.position.data
         if form.image.data:
+            delete_picture('page_pics', page_text.image)
             page_text.image = save_picture(form.image.data, 'page_pics')
         db.session.commit()
         flash('The element has been updated!', 'success')

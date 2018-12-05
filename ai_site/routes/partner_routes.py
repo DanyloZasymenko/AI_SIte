@@ -30,6 +30,7 @@ def partner_update(partner_id):
     form = PartnerForm()
     if form.validate_on_submit():
         if form.image.data:
+            delete_picture('partner_pics', partner.image)
             partner.image = save_picture(form.image.data, "partner_pics")
         partner.name = form.name.data
         partner.description = form.description.data

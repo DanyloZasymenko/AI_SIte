@@ -30,6 +30,7 @@ def history_update(history_id):
     form = HistoryForm()
     if form.validate_on_submit():
         if form.image.data:
+            delete_picture('history_pics', history.image)
             history.image = save_picture(form.image.data, "history_pics")
         history.header = form.header.data
         history.description = form.description.data

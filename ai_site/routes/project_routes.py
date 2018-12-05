@@ -33,6 +33,7 @@ def project_update(project_id):
     project = Project.query.get_or_404(project_id)
     if form.validate_on_submit():
         if form.image.data:
+            delete_picture('project_pics', project.image)
             project.image = save_picture(form.image.data, 'project_pics')
         project.title = form.title.data
         project.description = form.description.data

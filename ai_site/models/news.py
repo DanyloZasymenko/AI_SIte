@@ -20,7 +20,7 @@ class News(db.Model):
     header = db.Column(db.String(70), nullable=False)
     description = db.Column(db.Text, nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    image = db.Column(db.String(20), nullable=False)
+    image = db.Column(db.String(20), nullable=False, default='default.jpg')
     text = db.Column(db.Text, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('news_category.id'))
     comments = db.relationship('NewsComment', backref='news', lazy=True)

@@ -3,7 +3,7 @@ from ai_site import db
 
 class Teacher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(70), nullable=False)
     position = db.Column(db.String(50), nullable=False)
     link = db.Column(db.String(70))
     incumbency = db.Column(db.String(50), nullable=False)
@@ -11,7 +11,7 @@ class Teacher(db.Model):
     interests = db.Column(db.Text)
     research_directions = db.Column(db.Text)
     hobby = db.Column(db.String(50))
-    image = db.Column(db.String(20), nullable=False)
+    image = db.Column(db.String(20), nullable=False, default='default.jpg')
 
     def __repr__(self):
         return f"Teacher('{self.name}', '{self.position}', '{self.incumbency}', '{self.description}')"

@@ -43,6 +43,7 @@ def news_update(news_id):
     form = NewsForm()
     if form.validate_on_submit():
         if form.image.data:
+            delete_picture('news_pics', news.image)
             news.image = save_picture(form.image.data, 'news_pics')
         news.header = form.header.data
         news.description = form.description.data
