@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="content flex-1-0-auto">
+
+        {% for one in teachers_list.items %}
+
+            <div class="card-container col-lg-4 col-md-6 col-sm-12">
+                <a href="{{ one.link }}" class="card">
+                  <img class="card-img-top" src="{{ url_for('static', filename='teacher_pics/' + one.image) }}">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ one.name }}</h5>
+                    <p class="card-text">{{ one.position }}</p>
+                    <p><b>{{ one.incumbency }}</b></p>
+                    <p>{{ one.description }}</p>
+                    <p>Наукові інтереси: {{ one.interests }} </p>
+                    <p>Напрямки наукових досліджень: <br> {{ one.research_directions }}</p>
+                    <p>Хобі: {{ one.hobby }}</p>
+                  </div>
+                </a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+    <div class="display-flex flex-direction-row justify-content-center">
+        {% for page_num in teachers_list.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if page_num %}
+                {% if teachers_list.page == page_num %}
+                    <a class="btn btn-dark margin-5px" href="{{ url_for('teachers', page_number = page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-dark margin-5px" href="{{ url_for('teachers', year = year, page_number = page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+            ...
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

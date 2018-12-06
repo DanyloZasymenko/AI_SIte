@@ -2,6 +2,11 @@
     outline: none;
 }
 
+a:hover{
+    text-decoration: none;
+    color: #000;
+}
+
 
 .sidenav {
     height: 100%;
@@ -15,8 +20,6 @@
     margin-top: 50px;
 }
 
-
-/* Side navigation links */
 .sidenav a {
     color: white;
     padding: 16px;
@@ -32,17 +35,18 @@
 
 /* Style the content */
 .content {
-    padding-left: 20px;
-    margin-right: 20px;
-    margin-top: 50px;
+    padding-left: 40px;
+    margin-right: 40px;
+    margin-top: 60px;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
 .card-container{
-    padding: 10px 10px;
+    padding: 15px 15px;
     display: block;
+    color: #000;
 }
 
 .margin-5px{
