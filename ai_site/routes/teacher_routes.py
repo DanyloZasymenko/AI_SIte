@@ -3,7 +3,7 @@ from flask import render_template, flash, url_for, redirect, request
 from ai_site import app, db
 from ai_site.forms import TeacherForm
 from ai_site.models.teacher import Teacher
-from ai_site.utils import save_picture, delete_picture
+from ai_site.utils import save_picture, delete_picture, get_scholar_h_index
 
 
 @app.route("/teacher/save", methods=['GET', 'POST'])
@@ -14,6 +14,8 @@ def teacher_save():
                           incumbency=form.incumbency.data, description=form.description.data,
                           interests=form.interests.data,
                           research_directions=form.research_directions.data,
+                          scopus_id=form.scopus_id.data,
+                          scholar_id=form.scholar_id.data,
                           image=save_picture(form.image.data, 'teacher_pics'))
         db.session.add(teacher)
         db.session.commit()
@@ -39,6 +41,8 @@ def teacher_update(teacher_id):
         teacher.incumbency = form.incumbency.data
         teacher.description = form.description.data
         teacher.interests = form.interests.data
+        teacher.scopus_id = form.scopus_id.data
+        teacher.scholar_id = form.scholar_id.data
         teacher.research_directions = form.research_directions.data
         if form.image.data:
             delete_picture('teacher_pics', teacher.image)
@@ -55,6 +59,8 @@ def teacher_update(teacher_id):
         form.description.data = teacher.description
         form.interests.data = teacher.interests
         form.research_directions.data = teacher.research_directions
+        form.scopus_id.data = teacher.scopus_id
+        form.scholar_id.data = teacher.scholar_id
     return render_template("teacher/new_teacher.html", title='Update teacher', form=form, legend='Update')
 
 

@@ -12,6 +12,12 @@
                 <h2 class="article-title">{{ teacher.name }}</h2>
                 <p class="article-content">{{ teacher.position }}</p>
                 <p class="article-content">{{ teacher.incumbency }}</p>
+                {% if teacher.scopus_id %}
+                    <p class="article-content">Scopus ID: <a href="#">{{ teacher.scopus_id }}</a></p>
+                {% endif %}
+                {% if teacher.scholar_id %}
+                    <p class="article-content">Scholar ID: <a href="https://scholar.google.ca/citations?user={{ teacher.scholar_id }}&hl=en">{{ teacher.scholar_id }}</a>  H-index: {{ teacher.scholar_id | scholar_h_index }}</p>
+                {% endif %}
                 <div>
                     <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('teacher_update', teacher_id=teacher.id) }}">
                         Update

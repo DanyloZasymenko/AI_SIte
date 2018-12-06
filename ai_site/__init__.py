@@ -10,6 +10,8 @@ def get_pk_from_identity(obj):
 
 f.get_pk_from_identity = get_pk_from_identity
 
+MY_API_KEY = '36ef29ad4020bf2da8f93c12ae260636'
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '246dcac184d5fd3ae934da622bc69e4a'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234@localhost:3306/ai_site'
@@ -26,3 +28,6 @@ from ai_site.models.quotation import Quotation
 from ai_site.models.teacher import Teacher
 from ai_site.routes import home_routes, history_routes, partner_routes, news_routes, project_routes, page_routes, \
     teacher_routes
+from ai_site.utils import get_scopus_h_index
+
+get_scopus_h_index()

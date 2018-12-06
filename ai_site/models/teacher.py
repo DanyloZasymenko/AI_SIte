@@ -11,6 +11,8 @@ class Teacher(db.Model):
     interests = db.Column(db.Text)
     research_directions = db.Column(db.Text)
     hobby = db.Column(db.String(50))
+    scopus_id = db.Column(db.String(11))
+    scholar_id = db.Column(db.String(12))
     image = db.Column(db.String(20), nullable=False, default='default.jpg')
 
     def __repr__(self):
