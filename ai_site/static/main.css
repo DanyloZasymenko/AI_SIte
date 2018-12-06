@@ -1,0 +1,173 @@
+* {
+    outline: none;
+}
+
+
+.sidenav {
+    height: 100%;
+    max-width: 200px;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    margin-top: 50px;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Style the content */
+.content {
+    padding-left: 20px;
+    margin-right: 20px;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.card-container{
+    padding: 10px 10px;
+    display: block;
+}
+
+.margin-5px{
+    margin: 5px;
+}
+
+.margin-top-50px{
+    margin-top: 50px;
+}
+
+.margin-l-180px{
+    margin-left: 180px;
+}
+
+.margin-l-80px{
+    margin-left: 80px;
+}
+
+.display-flex{
+    display: flex;
+}
+
+.flex-direction-column{
+    flex-direction: column;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+.min-height-100vh{
+    min-height: 100vh;
+}
+
+.min-width-100vh{
+    min-width: 100vw;
+}
+
+.min-height-70vh{
+    min-height: 70vh;
+}
+
+.min-width-40vw{
+    width: 90%;
+}
+
+.flex-1-0-auto{
+    flex:1 0 auto;
+}
+
+.padding-5-5{
+    padding: 5% 5%;
+}
+
+.align-self-f-e{
+    align-self: flex-end;
+}
+
+.text-align-center{
+    text-align: center;
+}
+
+.overflow-hidden{
+    overflow: hidden;
+}
+
+#partners{
+    padding: 0 8% 30px 8%;
+}
+
+#partners div:first-child h2{
+    font-size: 40px;
+}
+
+#partnersSlider div div div{
+    width: 100%;
+    padding-top: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#partnersSlider div{
+    height: 100%;
+}
+
+.partnerName{
+    padding-top: 1%;
+    text-align: center;
+    color: #474747;
+    padding-right: 8px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: color .5s;
+}
+
+.partnerDescription{
+    margin-top: 5%;
+    color: #707070;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+}
+
+
+#partnersSlider{
+    width: 101.5%;
+}
+
+#partnersSlider .slick-slide{
+    padding: 0 15px;
+}
+
+.slick-prev,
+.slick-next {
+    top: 50%;
+}
+
+#projectSlider .slick-slide{
+    padding-top: 60vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
