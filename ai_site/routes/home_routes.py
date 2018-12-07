@@ -21,13 +21,13 @@ def admin():
 def news(category_id, page_number):
     if category_id == 0:
         page = request.args.get('page', page_number, type=int)
-        news = News.query.order_by(News.date_posted.desc()).paginate(page=page, per_page=12)
+        news = News.query.order_by(News.date_posted.desc()).paginate(page=page, per_page=6)
         return render_template('news.html', title='News', category_id=category_id, news_list=news,
                                categories=NewsCategory.query.all())
     else:
         page = request.args.get('page', page_number, type=int)
         news = News.query.filter_by(category_id=category_id).order_by(News.date_posted.desc()).paginate(page=page,
-                                                                                                        per_page=12)
+                                                                                                        per_page=6)
         return render_template("news.html", title='News', category_id=category_id, news_list=news,
                                categories=NewsCategory.query.all())
 

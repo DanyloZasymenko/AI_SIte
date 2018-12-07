@@ -1,5 +1,9 @@
-* {
+*{
     outline: none;
+}
+
+a{
+    color: #000;
 }
 
 a:hover{
@@ -46,7 +50,6 @@ a:hover{
 .card-container{
     padding: 15px 15px;
     display: block;
-    color: #000;
 }
 
 .margin-5px{

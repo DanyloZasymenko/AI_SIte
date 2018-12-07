@@ -14,7 +14,7 @@ MY_API_KEY = '36ef29ad4020bf2da8f93c12ae260636'
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '246dcac184d5fd3ae934da622bc69e4a'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234@localhost:3306/ai_site'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/ai_site'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
