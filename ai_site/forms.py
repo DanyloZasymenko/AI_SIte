@@ -22,21 +22,21 @@ class HistoryForm(FlaskForm):
     header = StringField('Header', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
     date = DateField('Date')
-    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    image = FileField('Choose image', validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Add')
 
 
 class PartnerForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=3, max=50)])
     description = TextAreaField('Description', validators=[DataRequired()])
-    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    image = FileField('Choose image', validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Add')
 
 
 class NewsForm(FlaskForm):
     header = StringField('Header', validators=[DataRequired(), Length(min=1, max=70)])
     description = TextAreaField('Description', validators=[DataRequired()])
-    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    image = FileField('Choose image', validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     text = TextAreaField('Text', validators=[DataRequired()])
     category = QuerySelectField('Choose category', validators=[DataRequired()],
                                 query_factory=news_category_query, allow_blank=False, get_label='name')
@@ -50,7 +50,7 @@ class NewsCategoryForm(FlaskForm):
 
 class ProjectForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min=1, max=70)])
-    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    image = FileField('Choose image', validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     description = TextAreaField('Description', validators=[DataRequired()])
     authors = TextAreaField('Authors', validators=[DataRequired(), Length(min=1, max=180)])
     url = StringField('Url', validators=[DataRequired(), Length(min=1, max=70)])
@@ -78,11 +78,19 @@ class TeacherForm(FlaskForm):
     position = StringField('Position', validators=[DataRequired(), Length(min=1, max=50)])
     link = StringField('Link', validators=[Length(min=0, max=70)])
     incumbency = StringField('Incumbency', validators=[DataRequired(), Length(min=1, max=50)])
-    description = TextAreaField('Description', validators=[DataRequired()])
+    description = TextAreaField('Description')
     interests = TextAreaField('Interests')
     research_directions = TextAreaField('Research directions')
     hobby = StringField('Hobby', validators=[Length(min=0, max=50)])
-    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    image = FileField('Choose image', validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     scopus_id = StringField('Scopus ID', validators=[Length(min=0, max=11)])
     scholar_id = StringField('Scholar ID', validators=[Length(min=0, max=12)])
+    submit = SubmitField('Add')
+
+
+class CourseForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)])
+    credits = IntegerField('Credits', validators=[NumberRange(min=0), DataRequired()])
+    year = SelectField('Year', choices=[(e.name, e.value) for e in Years], validators=[DataRequired()])
+    semester = SelectField('Semester', choices=[(e.name, e.value) for e in Semesters], validators=[DataRequired()])
     submit = SubmitField('Add')

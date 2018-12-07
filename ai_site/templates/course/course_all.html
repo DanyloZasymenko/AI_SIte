@@ -1,0 +1,49 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="text-center mb-2">
+        <a role="button" class="btn btn-lg btn-info" href="{{ url_for('course_save') }}">
+            Add new course
+        </a>
+    </div>
+    {% for course in courses %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="d-flex justify-content-between">
+                    <h2 class="article-title">{{ course.name }}</h2>
+                    <p class="article-content">Credits: {{ course.credits }}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex">
+                        <p class="article-content mt-auto mb-auto">Year: {{ course.year.value }}</p>
+                        <p class="article-content ml-5 mt-auto mb-auto">Semester: {{ course.semester.value }}</p>
+                    </div>
+                    <div>
+                    <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('course_update', course_id=course.id) }}">
+                        Update
+                    </a>
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                            data-link="{{ url_for('course_delete', course_id=course.id) }}" data-target="#deleteModal"
+                            onclick="deleteModal(event)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Course?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-danger" role="button" href="" id="deleteModalLink">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

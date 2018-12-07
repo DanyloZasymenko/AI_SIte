@@ -7,7 +7,7 @@ class Teacher(db.Model):
     position = db.Column(db.String(50), nullable=False)
     link = db.Column(db.String(70))
     incumbency = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text)
     interests = db.Column(db.Text)
     research_directions = db.Column(db.Text)
     hobby = db.Column(db.String(50))
