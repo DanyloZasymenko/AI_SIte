@@ -9,9 +9,8 @@ from ai_site.utils import save_picture, delete_picture
 @app.route("/projects/<int:year>/page/<int:page_number>")
 def projects(year, page_number):
     page = request.args.get('page', page_number, type=int)
-    projects = Project.query.filter_by(year = year).order_by(Project.semester.desc()).paginate(page = page, per_page= 12)
-    return render_template("projects.html", title='Projects', year = year, project_list=projects)
-
+    projects = Project.query.filter_by(year=year).order_by(Project.semester.desc()).paginate(page=page, per_page=12)
+    return render_template("projects.html", title='Projects', year=year, project_list=projects)
 
 
 @app.route("/project/save", methods=['GET', 'POST'])
@@ -19,10 +18,12 @@ def project_save():
     form = ProjectForm()
     if form.validate_on_submit():
         project = Project(title=form.title.data, description=form.description.data, authors=form.authors.data,
-                          url=form.url.data, image=save_picture(form.image.data, 'project_pics'))
-        for picture in form.pictures.data:
-            project_pict = ProjectPicture(image=save_picture(picture, 'project_pics'), project=project)
-            db.session.add(project_pict)
+                          url=form.url.data, image=save_picture(form.image.data, 'project_pics'),
+                          year=form.year.data, semester=form.semester.data)
+        if not form.pictures.data[0] == '':
+            for picture in form.pictures.data:
+                project_pict = ProjectPicture(image=save_picture(picture, 'project_pics'), project=project)
+                db.session.add(project_pict)
         db.session.add(project)
         db.session.commit()
         flash('The project has been added!', 'success')
@@ -47,6 +48,8 @@ def project_update(project_id):
         project.description = form.description.data
         project.authors = form.authors.data
         project.url = form.url.data
+        project.year = form.year.data
+        project.semester = form.semester.data
         for picture in form.pictures.data:
             project_pict = ProjectPicture(image=save_picture(picture, 'project_pics'), project=project)
             db.session.add(project_pict)
@@ -58,6 +61,8 @@ def project_update(project_id):
         form.description.data = project.description
         form.authors.data = project.authors
         form.url.data = project.url
+        form.year.data = project.year
+        form.semester.data = project.semester
     return render_template("project/new_project.html", title='Update Project', form=form, legend='Update')
 
 
