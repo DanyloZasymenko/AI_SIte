@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div id="particles-js"></div>
+    <div class="content margin-top-50px flex-1-0-auto display-flex justify-content-center col-md-8 offset-md-2">
+        <h1 class="text-align-center padding-20-0">Порядок вступу</h1>
+        {% for one in texts %}
+            <div>
+                <h5 class="white-space-pre-wrap">{{ one.primary_text }}</h5>
+                <p class="white-space-pre-wrap">{{ one.secondary_text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

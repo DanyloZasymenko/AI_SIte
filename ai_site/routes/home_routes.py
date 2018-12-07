@@ -8,8 +8,19 @@ from ai_site.models.page import Page
 @app.route("/")
 @app.route("/home")
 def home():
-    print(Page.query.filter_by(name="home").first())
     return render_template("home.html", title='Home', page=Page.query.filter_by(name="home").first())
+
+@app.route("/admission")
+def admission():
+    texts = []
+    page = Page.query.filter_by(name="admission").first()
+    # print(Page.query.filter_by(name="admission").first())
+    for one in page.texts:
+        print(one.position)
+        texts.insert(one.position, one)
+
+    print(texts)
+    return render_template("admission.html", title='Admission', texts=texts)
 
 
 @app.route("/admin")
@@ -21,13 +32,13 @@ def admin():
 def news(category_id, page_number):
     if category_id == 0:
         page = request.args.get('page', page_number, type=int)
-        news = News.query.order_by(News.date_posted.desc()).paginate(page=page, per_page=6)
+        news = News.query.order_by(News.date_posted.desc()).paginate(page=page, per_page=9)
         return render_template('news.html', title='News', category_id=category_id, news_list=news,
                                categories=NewsCategory.query.all())
     else:
         page = request.args.get('page', page_number, type=int)
         news = News.query.filter_by(category_id=category_id).order_by(News.date_posted.desc()).paginate(page=page,
-                                                                                                        per_page=6)
+                                                                                                        per_page=9)
         return render_template("news.html", title='News', category_id=category_id, news_list=news,
                                categories=NewsCategory.query.all())
 

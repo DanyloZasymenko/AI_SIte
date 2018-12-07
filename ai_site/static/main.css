@@ -56,6 +56,10 @@ a:hover{
     margin: 5px;
 }
 
+.padding-20-0{
+    margin: 20px 0;
+}
+
 .margin-top-50px{
     margin-top: 50px;
 }
@@ -116,8 +120,16 @@ a:hover{
     text-align: center;
 }
 
+.white-space-pre-wrap{
+    white-space: pre-wrap;
+}
+
 .overflow-hidden{
     overflow: hidden;
+}
+
+#particles-js{
+    position : absolute; z-index:-1; height: 100%; width: 100%;
 }
 
 #partners{
