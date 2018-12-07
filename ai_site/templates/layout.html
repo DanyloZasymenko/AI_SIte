@@ -34,7 +34,7 @@
               <a class="nav-link" href="{{ url_for('news', category_id = 0, page_number = 1) }}">НОВИНИ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">КОЛЕКТИВ</a>
+              <a class="nav-link" href="{{ url_for('teachers', page_number = 1) }}">КОЛЕКТИВ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">КАФЕДРА</a>
@@ -50,24 +50,12 @@
             </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">ПРОЕКТИ</a>
+              <a class="nav-link" href="{{ url_for('projects', year = 1, page_number = 1) }}">ПРОЕКТИ</a>
             </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            СТУДЕНТАМ
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">КАРТА КУРСІВ</a>
-            <a class="dropdown-item" href="#">МОЖЛИВОСТІ</a>
-            </div>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            АБІТУРІЄНТАМ
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">ПОРЯДОК ВСТУПУ</a>
-            <a class="dropdown-item" href="#">ДЕНЬ ВІДКРИТИХ ДВЕРЕЙ</a>
-            </div>
+            <li class="nav-item">
+            <a class="nav-link" href="#">КАРТА КУРСІВ</a>
+            <li class="nav-item">
+            <a class="nav-link" href="#">ПОРЯДОК ВСТУПУ</a>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('contacts') }}">КОНТАКТИ</a>
             </li>
@@ -94,6 +82,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>

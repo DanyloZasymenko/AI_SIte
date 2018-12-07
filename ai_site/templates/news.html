@@ -11,9 +11,9 @@
         {% for one in news_list.items %}
             <div class="card-container col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
-                  <img class="card-img-top" src="{{ url_for('static', filename='news_pics/' + one.image) }}" alt="Card image cap">
+                  <img class="card-img-top" src="{{ url_for('static', filename='news_pics/' + one.image) }}">
                   <div class="card-body">
-                    <h5 class="card-title">{{ one.header}}</h5>
+                    <h5 class="card-title">{{ one.title}}</h5>
                     <p class="card-text">{{ one.description }}</p>
                     <button type="button" class="btn btn-dark">Детальніше</button>
                     <p class="card-text"><small class="text-muted">Опубліковано {{ one.date_posted.strftime('%d-%m-%Y') }}</small></p>
@@ -37,11 +37,4 @@
         {% endfor %}
     </div>
 
-{#    <nav aria-label="Pagination" class="margin-l-180px">#}
-{#        <ul class="pagination">#}
-{#            <li class="page-item"><a class="page-link" href="#">1</a></li>#}
-{#            <li class="page-item"><a class="page-link" href="#">2</a></li>#}
-{#            <li class="page-item"><a class="page-link" href="#">3</a></li>#}
-{#        </ul>#}
-{#    </nav>#}
 {% endblock %}

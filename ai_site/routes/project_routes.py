@@ -6,6 +6,14 @@ from ai_site.models.project import Project, ProjectPicture
 from ai_site.utils import save_picture, delete_picture
 
 
+@app.route("/projects/<int:year>/page/<int:page_number>")
+def projects(year, page_number):
+    page = request.args.get('page', page_number, type=int)
+    projects = Project.query.filter_by(year = year).order_by(Project.semester.desc()).paginate(page = page, per_page= 12)
+    return render_template("projects.html", title='Projects', year = year, project_list=projects)
+
+
+
 @app.route("/project/save", methods=['GET', 'POST'])
 def project_save():
     form = ProjectForm()
