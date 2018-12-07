@@ -1,13 +1,11 @@
-import json
 import os
 import secrets
 import urllib.request
 
-import requests
 from PIL import Image
 from bs4 import BeautifulSoup
 
-from ai_site import app, MY_API_KEY
+from ai_site import app
 
 
 def save_picture(form_picture, folder):
@@ -16,7 +14,7 @@ def save_picture(form_picture, folder):
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/', folder, picture_fn)
 
-    output_size = (300, 300)
+    output_size = (1280, 720)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)

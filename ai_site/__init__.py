@@ -28,6 +28,3 @@ from ai_site.models.quotation import Quotation
 from ai_site.models.teacher import Teacher
 from ai_site.routes import home_routes, history_routes, partner_routes, news_routes, project_routes, page_routes, \
     teacher_routes
-from ai_site.utils import get_scopus_h_index
-
-get_scopus_h_index()
