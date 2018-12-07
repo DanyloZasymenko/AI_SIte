@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div id="particles-js"></div>
+    <div class="margin-top-50px flex-1-0-auto">
+        <div id="partners" class="margin-top-50px">
+			<div class="display-flex justify-content-center overflow-hidden">
+				<h2>Наші партнери</h2>
+			</div>
+			<div id="partnersSlider">
+                {% for one in partners %}
+                    <div>
+                        <div class="" style="background-image: url('{{ url_for('static', filename='partner_pics/' + one.image) }}')"></div>
+                        <h4 class="partnerName">{{ one.name }}</h4>
+                        <p class="partnerDescription">{{ one.description }}</p>
+                    </div>
+                {% endfor %}
+			</div>
+		</div>
+    </div>
+
+{% endblock %}

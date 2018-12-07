@@ -15,7 +15,7 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ one.title}}</h5>
                     <p class="card-text">{{ one.description }}</p>
-                    <button type="button" class="btn btn-dark">Детальніше</button>
+                    <a class="btn btn-dark" href="{{ url_for('news_get_one', news_id = one.id) }}">Детальніше</a>
                     <p class="card-text"><small class="text-muted">Опубліковано {{ one.date_posted.strftime('%d-%m-%Y') }}</small></p>
                   </div>
                 </div>

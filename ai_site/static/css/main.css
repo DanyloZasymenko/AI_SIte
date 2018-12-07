@@ -132,6 +132,14 @@ a:hover{
     position : absolute; z-index:-1; height: 100%; width: 100%;
 }
 
+.newsImage{
+    width: 100%;
+    padding-top: 50vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 #partners{
     padding: 0 8% 30px 8%;
 }
