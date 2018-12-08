@@ -68,7 +68,7 @@ class PageForm(FlaskForm):
 
 class PageTextForm(FlaskForm):
     primary_text = TextAreaField('Primary Text')
-    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png'])])
+    image = FileField('Choose image', validators=[FileAllowed(['jpg', 'png', 'gif'])])
     secondary_text = TextAreaField('Secondary Text')
     position = IntegerField('Position on page', validators=[NumberRange(min=0), DataRequired()])
     submit = SubmitField('Add')
