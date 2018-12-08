@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="particles-js"></div>
+<div class="padding-top-55px flex-1-0-auto">
+
+    <table class="table table-responsible table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>ПІБ</th>
+{#          <th>ORCID</th>#}
+          <th>Посада</th >
+          <th>Scopus</th>
+          <th>h-index</th>
+          <th>Scholar</th>
+          <th>h-index</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for teacher in teachers_list %}
+            <tr>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.incumbency }}</td>
+                {% if teacher.scopus_id %}
+                    <td>
+                        <a href="#">{{ teacher.scopus_id }}</a>
+                    </td>
+                    <td> - </td>
+                {% else %}
+                    <td>
+                        ---
+                    </td>
+                    <td> - </td>
+                {% endif %}
+                {% if teacher.scholar_id %}
+                    <td>
+                        <a href="https://scholar.google.ca/citations?user={{ teacher.scholar_id }}&hl=en">{{ teacher.scholar_id }}</a>
+                    </td>
+                    <td>
+                        {{ teacher.scholar_id | scholar_h_index }}
+                    </td>
+                {% else %}
+                    <td>
+                        ---
+                    </td>
+                    <td>
+                        -
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

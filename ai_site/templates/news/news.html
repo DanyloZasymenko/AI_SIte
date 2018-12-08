@@ -11,7 +11,8 @@
         {% for one in news_list.items %}
             <div class="card-container col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
-                  <img class="card-img-top" src="{{ url_for('static', filename='news_pics/' + one.image) }}">
+                  <img class="card-img-top" src="{{ url_for('static', filename='news_pics/' + one.image) }}"
+                       style="object-fit: cover; object-position: top; max-height: 50%;">
                   <div class="card-body">
                     <h5 class="card-title">{{ one.header }}</h5>
                     <p class="card-text">{{ one.description }}</p>

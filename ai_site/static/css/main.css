@@ -120,6 +120,10 @@ a:hover{
     padding: 5% 5%;
 }
 
+.padding-20px-5{
+    padding: 20px 5%;
+}
+
 .align-self-f-e{
     align-self: flex-end;
 }

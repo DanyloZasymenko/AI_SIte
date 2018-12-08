@@ -5,6 +5,7 @@ from ai_site.models.page import Page
 from ai_site.models.partner import Partner
 from ai_site.models.course import Course
 from ai_site.models.history import History
+from ai_site.models.teacher import Teacher
 
 
 @app.route("/")
@@ -31,6 +32,12 @@ def courses(year):
     courses_s1 = Course.query.filter_by(year=year, semester=1)
     courses_s2 = Course.query.filter_by(year=year, semester=2)
     return render_template("course/courses.html", title='Courses', semestr1 = courses_s1, semestr2 = courses_s2)
+
+@app.route("/science")
+def science():
+    teachers = Teacher.query.order_by(Teacher.name.asc()).all()
+    return render_template("science.html", title='Science', teachers_list=teachers)
+    # return render_template("course/courses.html", title='Courses', semestr1 = courses_s1, semestr2 = courses_s2)
 
 @app.route("/admin")
 def admin():
