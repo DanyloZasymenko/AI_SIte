@@ -1,4 +1,5 @@
 from flask import render_template, flash, url_for, redirect, request
+from flask_login import login_required
 
 from ai_site import app, db
 from ai_site.forms import CourseForm
@@ -6,6 +7,7 @@ from ai_site.models.course import Course
 
 
 @app.route("/course/save", methods=['GET', 'POST'])
+@login_required
 def course_save():
     form = CourseForm()
     if form.validate_on_submit():
@@ -19,11 +21,13 @@ def course_save():
 
 
 @app.route("/course/get-all")
+@login_required
 def course_get_all():
     return render_template("course/course_all.html", title='Course', courses=Course.query.all())
 
 
 @app.route("/course/update/<int:course_id>", methods=['GET', 'POST'])
+@login_required
 def course_update(course_id):
     course = Course.query.get_or_404(course_id)
     form = CourseForm()
@@ -44,6 +48,7 @@ def course_update(course_id):
 
 
 @app.route("/course/delete/<int:course_id>")
+@login_required
 def course_delete(course_id):
     course = Course.query.get_or_404(course_id)
     db.session.delete(course)

@@ -1,4 +1,5 @@
 from flask import render_template, flash, url_for, redirect, request
+from flask_login import login_required
 
 from ai_site import app, db
 from ai_site.forms import PartnerForm
@@ -7,6 +8,7 @@ from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/partner/save", methods=['GET', 'POST'])
+@login_required
 def partner_save():
     form = PartnerForm()
     if form.validate_on_submit():
@@ -20,11 +22,13 @@ def partner_save():
 
 
 @app.route("/partner/get-all")
+@login_required
 def partner_get_all():
     return render_template("partner/partner_all.html", title='Partners', partners=Partner.query.all())
 
 
 @app.route("/partner/update/<int:partner_id>", methods=['GET', 'POST'])
+@login_required
 def partner_update(partner_id):
     partner = Partner.query.get_or_404(partner_id)
     form = PartnerForm()
@@ -44,6 +48,7 @@ def partner_update(partner_id):
 
 
 @app.route("/partner/delete/<int:partner_id>")
+@login_required
 def partner_delete(partner_id):
     partner = Partner.query.get_or_404(partner_id)
     delete_picture('partner_pics', partner.image)

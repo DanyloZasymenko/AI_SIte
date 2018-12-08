@@ -1,4 +1,5 @@
 from flask import render_template, flash, url_for, redirect, request
+from flask_login import login_required
 
 from ai_site import app, db
 from ai_site.forms import PageForm, PageTextForm
@@ -7,6 +8,7 @@ from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/page/save", methods=['GET', 'POST'])
+@login_required
 def page_save():
     form = PageForm()
     if form.validate_on_submit():
@@ -19,6 +21,7 @@ def page_save():
 
 
 @app.route("/page/get-one/<int:page_id>", methods=['GET', 'POST'])
+@login_required
 def page_get_one(page_id):
     form = PageForm()
     page = Page.query.get_or_404(page_id)
@@ -34,11 +37,13 @@ def page_get_one(page_id):
 
 
 @app.route("/page/get-all")
+@login_required
 def page_get_all():
     return render_template("page/page_all.html", title='Page', pages=Page.query.all())
 
 
 @app.route("/page/delete/<int:page_id>")
+@login_required
 def page_delete(page_id):
     page = Page.query.get_or_404(page_id)
     for one in page.texts:
@@ -50,6 +55,7 @@ def page_delete(page_id):
 
 
 @app.route("/page-text/save/<int:page_id>", methods=['GET', 'POST'])
+@login_required
 def page_text_save(page_id):
     form = PageTextForm()
     if form.validate_on_submit():
@@ -65,6 +71,7 @@ def page_text_save(page_id):
 
 
 @app.route("/page-text/delete/<int:page_text_id>")
+@login_required
 def page_text_delete(page_text_id):
     page_text = PageText.query.get_or_404(page_text_id)
     delete_picture('page_pics', page_text.image)
@@ -75,6 +82,7 @@ def page_text_delete(page_text_id):
 
 
 @app.route("/page_text/update/<int:page_text_id>", methods=['GET', 'POST'])
+@login_required
 def page_text_update(page_text_id):
     page_text = PageText.query.get_or_404(page_text_id)
     form = PageTextForm()
@@ -96,6 +104,7 @@ def page_text_update(page_text_id):
 
 
 @app.route("/page-text/delete-image/<int:page_text_id>")
+@login_required
 def page_text_delete_image(page_text_id):
     page_text = PageText.query.get_or_404(page_text_id)
     delete_picture('page_pics', page_text.image)

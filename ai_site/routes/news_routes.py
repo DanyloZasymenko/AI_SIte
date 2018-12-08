@@ -1,4 +1,5 @@
 from flask import render_template, flash, url_for, redirect, request
+from flask_login import login_required
 
 from ai_site import app, db
 from ai_site.forms import NewsForm, NewsCategoryForm
@@ -7,6 +8,7 @@ from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/news/save", methods=['GET', 'POST'])
+@login_required
 def news_save():
     form = NewsForm()
     if form.validate_on_submit():
@@ -20,6 +22,7 @@ def news_save():
 
 
 @app.route("/news-category/save", methods=['GET', 'POST'])
+@login_required
 def news_category_save():
     form = NewsCategoryForm()
     if form.validate_on_submit():
@@ -32,12 +35,14 @@ def news_category_save():
 
 
 @app.route("/news/get-all")
+@login_required
 def news_get_all():
     return render_template("news/news_all.html", title='News', news=News.query.all(),
                            categories=NewsCategory.query.all())
 
 
 @app.route("/news/update/<int:news_id>", methods=['GET', 'POST'])
+@login_required
 def news_update(news_id):
     news = News.query.get_or_404(news_id)
     form = NewsForm()
@@ -61,6 +66,7 @@ def news_update(news_id):
 
 
 @app.route("/news/delete/<int:news_id>")
+@login_required
 def news_delete(news_id):
     news = News.query.get_or_404(news_id)
     delete_picture('news_pics', news.image)
@@ -71,6 +77,7 @@ def news_delete(news_id):
 
 
 @app.route("/news-category/delete/<int:news_category_id>/<delete_with_news>")
+@login_required
 def news_category_delete(news_category_id, delete_with_news):
     category = NewsCategory.query.get_or_404(news_category_id)
     if delete_with_news == 'True':
@@ -84,6 +91,7 @@ def news_category_delete(news_category_id, delete_with_news):
 
 
 @app.route("/news-category/update/<int:news_category_id>", methods=['GET', 'POST'])
+@login_required
 def news_category_update(news_category_id):
     category = NewsCategory.query.get_or_404(news_category_id)
     form = NewsCategoryForm()

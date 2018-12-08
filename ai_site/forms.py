@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, TextAreaField, SubmitField, SelectField, MultipleFileField, IntegerField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField, MultipleFileField, IntegerField, \
+    PasswordField, BooleanField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Length, Email, NumberRange
 from wtforms_sqlalchemy.fields import QuerySelectField
@@ -94,3 +95,10 @@ class CourseForm(FlaskForm):
     year = SelectField('Year', choices=[(e.name, e.value) for e in Years], validators=[DataRequired()])
     semester = SelectField('Semester', choices=[(e.name, e.value) for e in Semesters], validators=[DataRequired()])
     submit = SubmitField('Add')
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=1, max=50)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Sign Up')

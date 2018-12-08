@@ -1,4 +1,5 @@
 from flask import render_template, flash, url_for, redirect, request
+from flask_login import login_required
 
 from ai_site import app, db
 from ai_site.forms import ProjectForm
@@ -14,6 +15,7 @@ def projects(year, page_number):
 
 
 @app.route("/project/save", methods=['GET', 'POST'])
+@login_required
 def project_save():
     form = ProjectForm()
     if form.validate_on_submit():
@@ -32,11 +34,13 @@ def project_save():
 
 
 @app.route("/project/get-all")
+@login_required
 def project_get_all():
     return render_template("project/project_all.html", title='Project', projects=Project.query.all())
 
 
 @app.route("/project/update/<int:project_id>", methods=['GET', 'POST'])
+@login_required
 def project_update(project_id):
     form = ProjectForm()
     project = Project.query.get_or_404(project_id)
@@ -67,6 +71,7 @@ def project_update(project_id):
 
 
 @app.route("/project/delete/<int:project_id>")
+@login_required
 def project_delete(project_id):
     project = Project.query.get_or_404(project_id)
     delete_picture('project_pics', project.image)
@@ -79,6 +84,7 @@ def project_delete(project_id):
 
 
 @app.route("/project/delete-picture/<int:picture_id>")
+@login_required
 def project_delete_picture(picture_id):
     picture = ProjectPicture.query.get_or_404(picture_id)
     delete_picture('project_pics', picture.image)

@@ -1,18 +1,21 @@
 from flask import render_template, flash, url_for, redirect, request
+from flask_login import login_required
 
 from ai_site import app, db
 from ai_site.forms import TeacherForm
 from ai_site.models.teacher import Teacher
-from ai_site.utils import save_picture, delete_picture, get_scholar_h_index
+from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/teachers/page/<int:page_number>")
 def teachers(page_number):
     page = request.args.get('page', page_number, type=int)
-    teachers = Teacher.query.order_by(Teacher.id.desc()).paginate(page = page, per_page= 4)
+    teachers = Teacher.query.order_by(Teacher.id.desc()).paginate(page=page, per_page=4)
     return render_template("teachers.html", title='Teachers', teachers_list=teachers)
 
+
 @app.route("/teacher/save", methods=['GET', 'POST'])
+@login_required
 def teacher_save():
     form = TeacherForm()
     if form.validate_on_submit():
@@ -31,11 +34,13 @@ def teacher_save():
 
 
 @app.route("/teacher/get-all")
+@login_required
 def teacher_get_all():
     return render_template("teacher/teacher_all.html", title='Teacher', teachers=Teacher.query.all())
 
 
 @app.route("/teacher/update/<int:teacher_id>", methods=['GET', 'POST'])
+@login_required
 def teacher_update(teacher_id):
     teacher = Teacher.query.get_or_404(teacher_id)
     form = TeacherForm()
@@ -71,6 +76,7 @@ def teacher_update(teacher_id):
 
 
 @app.route("/teacher/delete/<int:teacher_id>")
+@login_required
 def teacher_delete(teacher_id):
     teacher = Teacher.query.get_or_404(teacher_id)
     delete_picture('teacher_pics', teacher.image)

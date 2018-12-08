@@ -1,4 +1,5 @@
 from flask import render_template, flash, url_for, redirect, request
+from flask_login import login_required
 
 from ai_site import app, db
 from ai_site.forms import HistoryForm
@@ -7,6 +8,7 @@ from ai_site.utils import save_picture, delete_picture
 
 
 @app.route("/history/save", methods=['GET', 'POST'])
+@login_required
 def history_save():
     form = HistoryForm()
     if form.validate_on_submit():
@@ -20,11 +22,13 @@ def history_save():
 
 
 @app.route("/history/get-all")
+@login_required
 def history_get_all():
     return render_template("history/history_all.html", title='History', histories=History.query.all())
 
 
 @app.route("/history/update/<int:history_id>", methods=['GET', 'POST'])
+@login_required
 def history_update(history_id):
     history = History.query.get_or_404(history_id)
     form = HistoryForm()
@@ -46,6 +50,7 @@ def history_update(history_id):
 
 
 @app.route("/history/delete/<int:history_id>")
+@login_required
 def history_delete(history_id):
     history = History.query.get_or_404(history_id)
     delete_picture('history_pics', history.image)

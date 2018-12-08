@@ -1,7 +1,8 @@
 import wtforms_sqlalchemy.fields as f
 from flask import Flask
+from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_login import LoginManager
 
 def get_pk_from_identity(obj):
     cls, key = f.identity_key(instance=obj)[:2]
@@ -17,6 +18,10 @@ app.config['SECRET_KEY'] = '246dcac184d5fd3ae934da622bc69e4a'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234@localhost:3306/ai_site'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+bCrypt = Bcrypt(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 
 from ai_site.models.history import History
 from ai_site.models.сallback import Callback

@@ -1,5 +1,7 @@
 import enum
 
+from sqlalchemy import ForeignKeyConstraint
+
 from ai_site import db
 
 
@@ -31,6 +33,14 @@ class Course(db.Model):
     credits = db.Column(db.Integer, nullable=False)
     year = db.Column(db.Enum(Years), default=Years.FIRST)
     semester = db.Column(db.Enum(Semesters), default=Semesters.FIRST)
+    related = db.relation('CourseRelationship', primaryjoin=id == CourseRelationship.one_course_id,
+                          cascade='all, delete')
+
+    def get_related_courses(self):
+        courses = []
+        for one in self.related:
+            courses.append(Course.query.filter_by(id=one.other_course_id).first())
+        return courses
 
     def __repr__(self):
         return f"Course('{self.name}', '{self.credits}', '{self.year}', '{self.semester}')"
