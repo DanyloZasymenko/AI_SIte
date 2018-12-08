@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="sidenav">
+        <a href="{{ url_for('courses', year = 1) }}"> 1 курс </a>
+        <a href="{{ url_for('courses', year = 2) }}"> 2 курс </a>
+        <a href="{{ url_for('courses', year = 3) }}"> 3 курс </a>
+        <a href="{{ url_for('courses', year = 4) }}"> 4 курс </a>
+    </div>
+
+    <div class="padding-top-55px margin-l-80px flex-1-0-auto">
+
+    <div class="collapse show" id="course1">
+    <table class="table table-responsible table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>1 семестр</th>
+                <th>Кількість кредитів</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for one in semestr1 %}
+                <tr>
+                    <td>{{ one.name }}</td>
+                    <td>{{ one.credits }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="collapse show" id="course2">
+        <table class="table table-responsible table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>2 семестр</th>
+                    <th>Кількість кредитів</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one in semestr2 %}
+                    <tr>
+                        <td>{{ one.name }}</td>
+                        <td>{{ one.credits }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

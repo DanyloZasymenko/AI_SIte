@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin.css') }}">
     <title>Admin Page</title>
 </head>
 <body>
@@ -27,6 +27,7 @@
                     <a class="nav-item nav-link" href="{{ url_for('teacher_get_all') }}">Teacher</a>
                     <a class="nav-item nav-link" href="{{ url_for('page_get_all') }}">Page</a>
                     <a class="nav-item nav-link" href="{{ url_for('course_get_all') }}">Course</a>
+                    <a class="nav-item nav-link" href="{{ url_for('callback_get_all') }}">Callback</a>
                 </div>
                 <div class="navbar-nav">
                     {% if current_user.is_authenticated %}
@@ -62,6 +63,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

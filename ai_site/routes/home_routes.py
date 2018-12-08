@@ -3,8 +3,12 @@ from flask_login import login_user, login_required, logout_user
 
 from ai_site import app, bCrypt
 from ai_site.forms import LoginForm
+from ai_site.models.course import Course
+from ai_site.models.history import History
 from ai_site.models.news import News, NewsCategory
 from ai_site.models.page import Page
+from ai_site.models.partner import Partner
+from ai_site.models.teacher import Teacher
 from ai_site.models.user import User
 
 
@@ -20,11 +24,28 @@ def admission():
     page = Page.query.filter_by(name="admission").first()
     # print(Page.query.filter_by(name="admission").first())
     for one in page.texts:
-        print(one.position)
         texts.insert(one.position, one)
-
-    print(texts)
     return render_template("admission.html", title='Admission', texts=texts)
+
+
+@app.route("/department")
+def department():
+    return render_template("department.html", title='Department', partners=Partner.query.all(),
+                           history=History.query.order_by(History.date.asc()).all())
+
+
+@app.route("/courses/<int:year>")
+def courses(year):
+    courses_s1 = Course.query.filter_by(year=year, semester=1)
+    courses_s2 = Course.query.filter_by(year=year, semester=2)
+    return render_template("course/courses.html", title='Courses', semestr1=courses_s1, semestr2=courses_s2)
+
+
+@app.route("/science")
+def science():
+    teachers = Teacher.query.order_by(Teacher.name.asc()).all()
+    return render_template("science.html", title='Science', teachers_list=teachers)
+    # return render_template("course/courses.html", title='Courses', semestr1 = courses_s1, semestr2 = courses_s2)
 
 
 @app.route("/admin")

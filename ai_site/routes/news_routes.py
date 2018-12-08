@@ -7,6 +7,27 @@ from ai_site.models.news import News, NewsCategory
 from ai_site.utils import save_picture, delete_picture
 
 
+@app.route("/news/<int:news_id>")
+def news_get_one(news_id):
+    news = News.query.get_or_404(news_id)
+    print(news)
+    return render_template("news/oneNews.html", title=news.header, oneNews=news)
+
+@app.route("/news/<int:category_id>/page/<int:page_number>")
+def news(category_id, page_number):
+    if category_id == 0:
+        page = request.args.get('page', page_number, type=int)
+        news = News.query.order_by(News.date_posted.desc()).paginate(page=page, per_page=9)
+        return render_template('news/news.html', title='News', category_id=category_id, news_list=news,
+                               categories=NewsCategory.query.all())
+    else:
+        page = request.args.get('page', page_number, type=int)
+        news = News.query.filter_by(category_id=category_id).order_by(News.date_posted.desc()).paginate(page=page,
+                                                                                                        per_page=9)
+        return render_template("news/news.html", title='News', category_id=category_id, news_list=news,
+                               categories=NewsCategory.query.all())
+
+
 @app.route("/news/save", methods=['GET', 'POST'])
 @login_required
 def news_save():

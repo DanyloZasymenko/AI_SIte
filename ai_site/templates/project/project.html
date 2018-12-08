@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div id="particles-js"></div>
+    <div class="content margin-top-50px padding-bottom-30px flex-1-0-auto display-flex flex-direction-column col-md-8 offset-md-2">
+        <div id="projectSlider">
+            <div style="background-image: url('{{ url_for('static', filename='project_pics/' + project.image) }}')"></div>
+            {% for one in projectPictures %}
+                <div style="background-image: url('{{ url_for('static', filename='project_pics/' + one.image) }}')"></div>
+            {% endfor %}
+        </div>
+{#        <div class="newsImage" style="background-image: url('{{ url_for('static', filename='project_pics/' + project.image) }}')"></div>#}
+        <h1 class="text-align-center padding-20-0">{{ project.title }}</h1>
+        <p class="white-space-pre-wrap">{{ project.description }}</p>
+        <h6> <b> Автори проекту: </b> <br> {{ project.authors }} </h6>
+        <a class="btn btn-outline-dark" href="{{ project.url }}">Посилання на проект</a>
+        </div>
+    </div>
+{% endblock %}

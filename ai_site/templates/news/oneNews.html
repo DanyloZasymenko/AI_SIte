@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div id="particles-js"></div>
+    <div class="content margin-top-50px flex-1-0-auto display-flex flex-direction-column col-md-8 offset-md-2">
+        <div class="newsImage" style="background-image: url('{{ url_for('static', filename='news_pics/' + oneNews.image) }}')"></div>
+        <h1 class="text-align-center">{{ oneNews.header }}</h1>
+        <p class="text-align-center white-space-pre-wrap">{{ oneNews.text }}</p>
+        </div>
+    </div>
+
+{% endblock %}

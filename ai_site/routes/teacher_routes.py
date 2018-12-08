@@ -11,7 +11,7 @@ from ai_site.utils import save_picture, delete_picture
 def teachers(page_number):
     page = request.args.get('page', page_number, type=int)
     teachers = Teacher.query.order_by(Teacher.id.desc()).paginate(page=page, per_page=4)
-    return render_template("teachers.html", title='Teachers', teachers_list=teachers)
+    return render_template("teacher/teachers.html", title='Teachers', teachers_list=teachers)
 
 
 @app.route("/teacher/save", methods=['GET', 'POST'])

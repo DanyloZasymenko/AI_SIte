@@ -6,8 +6,6 @@
         <a href="{{ url_for('projects', year = 2, page_number = 1) }}"> 2 курс </a>
         <a href="{{ url_for('projects', year = 3, page_number = 1) }}"> 3 курс </a>
         <a href="{{ url_for('projects', year = 4, page_number = 1) }}"> 4 курс </a>
-        <a href="{{ url_for('projects', year = 5, page_number = 1) }}"> 5 курс </a>
-        <a href="{{ url_for('projects', year = 6, page_number = 1) }}"> 6 курс </a>
     </div>
 
     <div class="content margin-l-80px flex-1-0-auto">
@@ -17,8 +15,7 @@
                   <img class="card-img-top" src="{{ url_for('static', filename='project_pics/' + one.image) }}">
                   <div class="card-body">
                     <h5 class="card-title">{{ one.title}}</h5>
-                    <p class="card-text">{{ one.description }}</p>
-                    <button type="button" class="btn btn-dark">Детальніше</button>
+                    <a class="btn btn-dark" href="{{ url_for('project_get_one', project_id = one.id) }}">Детальніше</a>
                   </div>
                 </div>
             </div>
