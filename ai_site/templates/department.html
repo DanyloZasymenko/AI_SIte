@@ -16,6 +16,25 @@
                 {% endfor %}
 			</div>
 		</div>
+        <div id="history" class="margin-top-50px">
+            <div class="display-flex justify-content-center overflow-hidden">
+				<h2>Історія</h2>
+			</div>
+            <div class="display-flex padding-20-0">
+                {% for one in history%}
+                    <div class="card-container col-lg-4 col-md-6 col-sm-12" >
+                        <div class="card">
+                            <img class="card-img-top" src="{{ url_for('static', filename='history_pics/' + one.image) }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ one.header }}</h5>
+                                <p class="card-text">{{ one.description }}</p>
+                                <p class="card-text"><small class="text-muted">{{ one.date }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

@@ -16,6 +16,12 @@ $(document).ready(function(){
 	    slide();
 	});
 
+	$('#projectSlider').slick({
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: false
+	});
+
 	$('#partnersSlider').slick({
 	  slidesToShow: 3,
 	  slidesToScroll: 1,

@@ -57,7 +57,15 @@ a:hover{
 }
 
 .padding-20-0{
-    margin: 20px 0;
+    padding: 20px 0;
+}
+
+.padding-top-55px{
+    padding-top: 55px;
+}
+
+.padding-bottom-30px{
+    padding-bottom: 30px;
 }
 
 .margin-top-50px{

@@ -13,7 +13,7 @@
                 <div class="card">
                   <img class="card-img-top" src="{{ url_for('static', filename='news_pics/' + one.image) }}">
                   <div class="card-body">
-                    <h5 class="card-title">{{ one.title}}</h5>
+                    <h5 class="card-title">{{ one.header }}</h5>
                     <p class="card-text">{{ one.description }}</p>
                     <a class="btn btn-dark" href="{{ url_for('news_get_one', news_id = one.id) }}">Детальніше</a>
                     <p class="card-text"><small class="text-muted">Опубліковано {{ one.date_posted.strftime('%d-%m-%Y') }}</small></p>
