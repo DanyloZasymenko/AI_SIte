@@ -27,8 +27,8 @@
                             <img class="card-img-top" src="{{ url_for('static', filename='history_pics/' + one.image) }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ one.header }}</h5>
-                                <p class="card-text">{{ one.description }}</p>
-                                <p class="card-text"><small class="text-muted">{{ one.date }}</small></p>
+                                <p class="card-text white-space-pre-wrap">{{ one.description }}</p>
+                                <p class="card-text"><small class="text-muted">{{ one.date.strftime('%m-%Y') }}</small></p>
                             </div>
                         </div>
                     </div>
